@@ -59,7 +59,7 @@ async function runInference(imgDataUri, validKeys) {
     for (const key of validKeys) {
         try {
             const response = await fetch(
-                'https://router.huggingface.co/hf-inference/v1/chat/completions',
+                'https://router.huggingface.co/v1/chat/completions',
                 {
                     method: 'POST',
                     headers: {
@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const finalResults = [];
 
-        // Process images concurrently or sequentially? Sequentially is safer for free API limits.
+        // Process images serially to respect limits.
         for (let i = 0; i < imagesData.length; i++) {
             resultsList.innerHTML = `<p style="text-align: center; color: var(--text-secondary);">Analyzing image ${i+1} of ${imagesData.length}...</p>`;
             const res = await runInference(imagesData[i].dataUri, decryptedApiKeys);
