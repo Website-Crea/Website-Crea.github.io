@@ -59,7 +59,7 @@ async function runInference(imgDataUri, validKeys) {
     for (const key of validKeys) {
         try {
             const response = await fetch(
-                'https://api-inference.huggingface.co/v1/chat/completions',
+                'https://router.huggingface.co/hf-inference/v1/chat/completions',
                 {
                     method: 'POST',
                     headers: {
